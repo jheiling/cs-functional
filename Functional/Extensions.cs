@@ -4,6 +4,8 @@ namespace Functional
 {
     public static class Extensions
     {
+        public static T Id<T>(this T value) => value;
+
         #region Piping
         public static TResult Apply<T, TResult>(this T value, Func<T, TResult> func)
         {
