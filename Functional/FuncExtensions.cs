@@ -65,6 +65,38 @@ namespace Functional
 #endif
             return (T1 arg1) => (T2 arg2) => (T3 arg3) => (T4 arg4) => (T5 arg5) => func(arg1, arg2, arg3, arg4, arg5);
         }
+
+        public static Func<T1, T2, TResult> Uncurry<T1, T2, TResult>(this Func<T1, Func<T2, TResult>> func)
+        {
+#if DEBUG
+            if (func == null) throw new ArgumentNullException(nameof(func));
+#endif
+            return (T1 arg1, T2 arg2) => func(arg1)(arg2);
+        }
+
+        public static Func<T1, T2, T3, TResult> Uncurry<T1, T2, T3, TResult>(this Func<T1, Func<T2, Func<T3, TResult>>> func)
+        {
+#if DEBUG
+            if (func == null) throw new ArgumentNullException(nameof(func));
+#endif
+            return (T1 arg1, T2 arg2, T3 arg3) => func(arg1)(arg2)(arg3);
+        }
+
+        public static Func<T1, T2, T3, T4, TResult> Uncurry<T1, T2, T3, T4, TResult>(this Func<T1, Func<T2, Func<T3, Func<T4, TResult>>>> func)
+        {
+#if DEBUG
+            if (func == null) throw new ArgumentNullException(nameof(func));
+#endif
+            return (T1 arg1, T2 arg2, T3 arg3, T4 arg4) => func(arg1)(arg2)(arg3)(arg4);
+        }
+
+        public static Func<T1, T2, T3, T4, T5, TResult> Uncurry<T1, T2, T3, T4, T5, TResult>(this Func<T1, Func<T2, Func<T3, Func<T4, Func<T5, TResult>>>>> func)
+        {
+#if DEBUG
+            if (func == null) throw new ArgumentNullException(nameof(func));
+#endif
+            return (T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5) => func(arg1)(arg2)(arg3)(arg4)(arg5);
+        }
         #endregion
     }
 }
