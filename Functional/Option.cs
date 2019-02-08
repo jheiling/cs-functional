@@ -13,6 +13,8 @@ namespace Functional
             IsSome = true;
         }
 
+        public T GetOrElse(T defaultValue) => IsSome ? _value : defaultValue;
+
         public TResult Match<TResult>(Func<T, TResult> funcSome, Func<TResult> funcNone)
         {
 #if DEBUG
@@ -48,7 +50,13 @@ namespace Functional
             if (IsSome) action(_value);
         }
 
-        public T GetOrElse(T defaultValue) => IsSome ? _value : defaultValue;
+        public Option<TResult> Bind<TResult>(Func<T, Option<TResult>> func)
+        {
+#if DEBUG
+            if (func == null) throw new ArgumentNullException(nameof(func));
+#endif
+            return IsSome ? func(_value) : new Option<TResult>();
+        }
 
         /// <summary>
         /// Just Map with another name to enable query syntax.
