@@ -46,12 +46,12 @@ namespace Functional
             if (IsSome) yield return _value;
         }
 
-        public Option<TResult> Select<TResult>(Func<T, TResult> func)
+        public Option<TResult> Select<TResult>(Func<T, TResult> selector)
         {
 #if DEBUG
-            if (func == null) throw new ArgumentNullException(nameof(func));
+            if (selector == null) throw new ArgumentNullException(nameof(selector));
 #endif
-            return IsSome ? new Option<TResult>(func(_value)) : new Option<TResult>();
+            return IsSome ? new Option<TResult>(selector(_value)) : new Option<TResult>();
         }
 
         public Option<T> Where(Func<T, bool> predicate)
