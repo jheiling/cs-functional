@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Functional
 {
-    public struct Option<T>
+    public struct Option<T> : IEnumerable<T>
     {
         readonly T _value;
         public readonly bool IsSome;
@@ -34,7 +36,17 @@ namespace Functional
             else actionNone();
         }
 
-        public Option<TResult> Map<TResult>(Func<T, TResult> func)
+        public IEnumerator<T> GetEnumerator()
+        {
+            if (IsSome) yield return _value;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            if (IsSome) yield return _value;
+        }
+
+        public Option<TResult> Select<TResult>(Func<T, TResult> func)
         {
 #if DEBUG
             if (func == null) throw new ArgumentNullException(nameof(func));
@@ -42,7 +54,15 @@ namespace Functional
             return IsSome ? new Option<TResult>(func(_value)) : new Option<TResult>();
         }
 
-        public void Iter(Action<T> action)
+        public Option<T> Where(Func<T, bool> predicate)
+        {
+#if DEBUG
+            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
+#endif
+            return IsSome ? (predicate(_value) ? this : new Option<T>()) : this;
+        }
+
+        public void ForEach(Action<T> action)
         {
 #if DEBUG
             if (action == null) throw new ArgumentNullException(nameof(action));
@@ -57,10 +77,5 @@ namespace Functional
 #endif
             return IsSome ? func(_value) : new Option<TResult>();
         }
-
-        /// <summary>
-        /// Just Map with another name to enable query syntax.
-        /// </summary>
-        public Option<TResult> Select<TResult>(Func<T, TResult> selector) => Map(selector);
     }
 }
