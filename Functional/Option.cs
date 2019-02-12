@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Functional
 {
-    /// <summary>Contains either a value of type <typeparamref name="T"/> or nothing.</summary>
+    /// <summary>Contains either a non <see langword="null"/> value of type <typeparamref name="T"/> or nothing.</summary>
     /// <typeparam name="T">The wrapped type.</typeparam>
     public struct Option<T> : IEnumerable<T>
     {
