@@ -35,7 +35,7 @@ namespace Functional
         /// <summary>Gets the wrapped <see cref="Value"/> or a <paramref name="defaultValue"/>.</summary>
         /// <param name="defaultValue">The return value if <see cref="HasValue"/> is <see langword="false"/>.</param>
         /// <returns><see cref="Value"/> if <see cref="HasValue"/> is <see langword="true"/>, <paramref name="defaultValue"/> otherwise.</returns>
-        public T GetOrElse(T defaultValue) => HasValue ? Value : defaultValue;
+        public T GetOrElse(in T defaultValue) => HasValue ? Value : defaultValue;
 
         /// <summary>Calls <paramref name="funcSome"/> if <see cref="HasValue"/> is <see langword="true"/>, or <paramref name="funcNone"/> otherwise, and returns the result.</summary>
         /// <typeparam name="TResult">The return type.</typeparam>
