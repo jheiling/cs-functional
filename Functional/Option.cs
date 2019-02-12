@@ -11,8 +11,18 @@ namespace Functional
 
         public Option(T value)
         {
-            _value = value;
-            IsSome = true;
+#pragma warning disable IDE0041 // Use 'is null' check
+            if (ReferenceEquals(value, null))
+#pragma warning restore IDE0041 // Use 'is null' check
+            {
+                _value = default(T);
+                IsSome = false;
+            }
+            else
+            {
+                _value = value;
+                IsSome = true;
+            }
         }
 
         public T GetOrElse(T defaultValue) => IsSome ? _value : defaultValue;
