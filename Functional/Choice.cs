@@ -7,21 +7,21 @@ namespace Functional
         public readonly int Case;
         public readonly object Value;
 
-        public Choice(T1 value)
+        public Choice(in T1 value)
         {
             Case = 1;
             Value = value;
         }
 
-        public Choice(T2 value)
+        public Choice(in T2 value)
         {
             Case = 2;
             Value = value;
         }
 
         public TResult Match<TResult>(
-            Func<T1, TResult> func1,
-            Func<T2, TResult> func2)
+            in Func<T1, TResult> func1,
+            in Func<T2, TResult> func2)
         {
 #if DEBUG
             if (func1 == null) throw new ArgumentNullException(nameof(func1));
@@ -33,8 +33,8 @@ namespace Functional
         }
 
         public void Match(
-            Action<T1> action1,
-            Action<T2> action2)
+            in Action<T1> action1,
+            in Action<T2> action2)
         {
 #if DEBUG
             if (action1 == null) throw new ArgumentNullException(nameof(action1));
@@ -50,28 +50,28 @@ namespace Functional
         public readonly int Case;
         public readonly object Value;
 
-        public Choice(T1 value)
+        public Choice(in T1 value)
         {
             Case = 1;
             Value = value;
         }
 
-        public Choice(T2 value)
+        public Choice(in T2 value)
         {
             Case = 2;
             Value = value;
         }
 
-        public Choice(T3 value)
+        public Choice(in T3 value)
         {
             Case = 3;
             Value = value;
         }
 
         public TResult Match<TResult>(
-            Func<T1, TResult> func1,
-            Func<T2, TResult> func2,
-            Func<T3, TResult> func3)
+            in Func<T1, TResult> func1,
+            in Func<T2, TResult> func2,
+            in Func<T3, TResult> func3)
         {
 #if DEBUG
             if (func1 == null) throw new ArgumentNullException(nameof(func1));
@@ -85,9 +85,9 @@ namespace Functional
         }
 
         public void Match(
-            Action<T1> action1,
-            Action<T2> action2,
-            Action<T3> action3)
+            in Action<T1> action1,
+            in Action<T2> action2,
+            in Action<T3> action3)
         {
 #if DEBUG
             if (action1 == null) throw new ArgumentNullException(nameof(action1));
@@ -105,35 +105,35 @@ namespace Functional
         public readonly int Case;
         public readonly object Value;
 
-        public Choice(T1 value)
+        public Choice(in T1 value)
         {
             Case = 1;
             Value = value;
         }
 
-        public Choice(T2 value)
+        public Choice(in T2 value)
         {
             Case = 2;
             Value = value;
         }
 
-        public Choice(T3 value)
+        public Choice(in T3 value)
         {
             Case = 3;
             Value = value;
         }
 
-        public Choice(T4 value)
+        public Choice(in T4 value)
         {
             Case = 4;
             Value = value;
         }
 
         public TResult Match<TResult>(
-            Func<T1, TResult> func1,
-            Func<T2, TResult> func2,
-            Func<T3, TResult> func3,
-            Func<T4, TResult> func4)
+            in Func<T1, TResult> func1,
+            in Func<T2, TResult> func2,
+            in Func<T3, TResult> func3,
+            in Func<T4, TResult> func4)
         {
 #if DEBUG
             if (func1 == null) throw new ArgumentNullException(nameof(func1));
@@ -149,10 +149,10 @@ namespace Functional
         }
 
         public void Match(
-            Action<T1> action1,
-            Action<T2> action2,
-            Action<T3> action3,
-            Action<T4> action4)
+            in Action<T1> action1,
+            in Action<T2> action2,
+            in Action<T3> action3,
+            in Action<T4> action4)
         {
 #if DEBUG
             if (action1 == null) throw new ArgumentNullException(nameof(action1));
@@ -172,42 +172,42 @@ namespace Functional
         public readonly int Case;
         public readonly object Value;
 
-        public Choice(T1 value)
+        public Choice(in T1 value)
         {
             Case = 1;
             Value = value;
         }
 
-        public Choice(T2 value)
+        public Choice(in T2 value)
         {
             Case = 2;
             Value = value;
         }
 
-        public Choice(T3 value)
+        public Choice(in T3 value)
         {
             Case = 3;
             Value = value;
         }
 
-        public Choice(T4 value)
+        public Choice(in T4 value)
         {
             Case = 4;
             Value = value;
         }
 
-        public Choice(T5 value)
+        public Choice(in T5 value)
         {
             Case = 5;
             Value = value;
         }
 
         public TResult Match<TResult>(
-            Func<T1, TResult> func1,
-            Func<T2, TResult> func2,
-            Func<T3, TResult> func3,
-            Func<T4, TResult> func4,
-            Func<T5, TResult> func5)
+            in Func<T1, TResult> func1,
+            in Func<T2, TResult> func2,
+            in Func<T3, TResult> func3,
+            in Func<T4, TResult> func4,
+            in Func<T5, TResult> func5)
         {
 #if DEBUG
             if (func1 == null) throw new ArgumentNullException(nameof(func1));
@@ -225,11 +225,11 @@ namespace Functional
         }
 
         public void Match(
-            Action<T1> action1,
-            Action<T2> action2,
-            Action<T3> action3,
-            Action<T4> action4,
-            Action<T5> action5)
+            in Action<T1> action1,
+            in Action<T2> action2,
+            in Action<T3> action3,
+            in Action<T4> action4,
+            in Action<T5> action5)
         {
 #if DEBUG
             if (action1 == null) throw new ArgumentNullException(nameof(action1));
@@ -251,49 +251,49 @@ namespace Functional
         public readonly int Case;
         public readonly object Value;
 
-        public Choice(T1 value)
+        public Choice(in T1 value)
         {
             Case = 1;
             Value = value;
         }
 
-        public Choice(T2 value)
+        public Choice(in T2 value)
         {
             Case = 2;
             Value = value;
         }
 
-        public Choice(T3 value)
+        public Choice(in T3 value)
         {
             Case = 3;
             Value = value;
         }
 
-        public Choice(T4 value)
+        public Choice(in T4 value)
         {
             Case = 4;
             Value = value;
         }
 
-        public Choice(T5 value)
+        public Choice(in T5 value)
         {
             Case = 5;
             Value = value;
         }
 
-        public Choice(T6 value)
+        public Choice(in T6 value)
         {
             Case = 6;
             Value = value;
         }
 
         public TResult Match<TResult>(
-            Func<T1, TResult> func1,
-            Func<T2, TResult> func2,
-            Func<T3, TResult> func3,
-            Func<T4, TResult> func4,
-            Func<T5, TResult> func5,
-            Func<T6, TResult> func6)
+            in Func<T1, TResult> func1,
+            in Func<T2, TResult> func2,
+            in Func<T3, TResult> func3,
+            in Func<T4, TResult> func4,
+            in Func<T5, TResult> func5,
+            in Func<T6, TResult> func6)
         {
 #if DEBUG
             if (func1 == null) throw new ArgumentNullException(nameof(func1));
@@ -313,12 +313,12 @@ namespace Functional
         }
 
         public void Match(
-            Action<T1> action1,
-            Action<T2> action2,
-            Action<T3> action3,
-            Action<T4> action4,
-            Action<T5> action5,
-            Action<T6> action6)
+            in Action<T1> action1,
+            in Action<T2> action2,
+            in Action<T3> action3,
+            in Action<T4> action4,
+            in Action<T5> action5,
+            in Action<T6> action6)
         {
 #if DEBUG
             if (action1 == null) throw new ArgumentNullException(nameof(action1));

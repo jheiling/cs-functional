@@ -16,13 +16,13 @@ namespace Functional
 
         /// <summary>Constructs an <see cref="Option"/> with the given <paramref name="value"/>.</summary>
         /// <param name="value">The value to wrap.</param>
-        public Option(T value)
+        public Option(in T value)
         {
 #pragma warning disable IDE0041 // Use 'is null' check
             if (ReferenceEquals(value, null))
 #pragma warning restore IDE0041 // Use 'is null' check
             {
-                Value = default(T);
+                Value = default;
                 HasValue = false;
             }
             else
@@ -42,7 +42,7 @@ namespace Functional
         /// <param name="funcSome">The function to call if <see cref="HasValue"/> is <see langword="true"/>.</param>
         /// <param name="funcNone">The function to call if <see cref="HasValue"/> is <see langword="false"/>.</param>
         /// <returns>The result of calling <paramref name="funcSome"/> with <see cref="Value"/> if <see cref="HasValue"/> is <see langword="true"/>, the result of <paramref name="funcNone"/> otherwise.</returns>
-        public TResult Match<TResult>(Func<T, TResult> funcSome, Func<TResult> funcNone)
+        public TResult Match<TResult>(in Func<T, TResult> funcSome, in Func<TResult> funcNone)
         {
 #if DEBUG
             if (funcSome == null) throw new ArgumentNullException(nameof(funcSome));
@@ -54,7 +54,7 @@ namespace Functional
         /// <summary>Calls <paramref name="actionSome"/> if <see cref="HasValue"/> is <see langword="true"/>, or <paramref name="actionNone"/> otherwise.</summary>
         /// <param name="actionSome">The function to call if <see cref="HasValue"/> is <see langword="true"/>.</param>
         /// <param name="actionNone">The function to call if <see cref="HasValue"/> is <see langword="false"/>.</param>
-        public void Match(Action<T> actionSome, Action actionNone)
+        public void Match(in Action<T> actionSome, in Action actionNone)
         {
 #if DEBUG
             if (actionSome == null) throw new ArgumentNullException(nameof(actionSome));
@@ -74,7 +74,7 @@ namespace Functional
         /// <typeparam name="TResult">The wrapped return type.</typeparam>
         /// <param name="selector">A function to apply to the <see cref="Value"/>.</param>
         /// <returns>An <see cref="Option"/> containing the return value of <paramref name="selector"/> applied to <see cref="Value"/>, or an empty <see cref="Option"/> if <see cref="HasValue"/> is <see langword="false"/>.</returns>
-        public Option<TResult> Select<TResult>(Func<T, TResult> selector)
+        public Option<TResult> Select<TResult>(in Func<T, TResult> selector)
         {
 #if DEBUG
             if (selector == null) throw new ArgumentNullException(nameof(selector));
@@ -85,7 +85,7 @@ namespace Functional
         /// <summary>Filters an <see cref="Option"/> value by the specified <paramref name="predicate"/>.</summary>
         /// <param name="predicate">The predicate.</param>
         /// <returns>An <see cref="Option"/> value containing the <see cref="Value"/> if the <paramref name="predicate"/> evaluates to <see langword="true"/>, or an empty <see cref="Option"/> otherwise.</returns>
-        public Option<T> Where(Func<T, bool> predicate)
+        public Option<T> Where(in Func<T, bool> predicate)
         {
 #if DEBUG
             if (predicate == null) throw new ArgumentNullException(nameof(predicate));
@@ -95,7 +95,7 @@ namespace Functional
 
         /// <summary>Calls the specified <paramref name="action"/> with <see cref="Value"/> if <see cref="HasValue"/> is <see langword="true"/>.</summary>
         /// <param name="action">The action to call.</param>
-        public void ForEach(Action<T> action)
+        public void ForEach(in Action<T> action)
         {
 #if DEBUG
             if (action == null) throw new ArgumentNullException(nameof(action));
@@ -107,7 +107,7 @@ namespace Functional
         /// <typeparam name="TResult">The wrapped return type.</typeparam>
         /// <param name="func">The function to call with <see cref="Value"/>.</param>
         /// <returns>The result of calling <paramref name="func"/> with <see cref="Value"/> if <see cref="HasValue"/> is <see langword="true"/>, or an empty <see cref="Option"/> otherwise.</returns>
-        public Option<TResult> Bind<TResult>(Func<T, Option<TResult>> func)
+        public Option<TResult> Bind<TResult>(in Func<T, Option<TResult>> func)
         {
 #if DEBUG
             if (func == null) throw new ArgumentNullException(nameof(func));
